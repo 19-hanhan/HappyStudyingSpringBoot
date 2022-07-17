@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxnu.admin.dao.ActivityMapper">
+    <delete id="del" parameterType="Integer">
+        DELETE FROM t_activities WHERE a_id = #{id}
+    </delete>
+
+    <update id="update" parameterType="Activity">
+        UPDATE t_activities SET a_user_id = #{aUserId}, a_user_name = #{aUserName}, a_title = #{aTitle}, a_colleges = #{aColleges}, is_sticky = #{isSticky}, is_essence = #{isEssence}, is_audit = #{isAudit} where a_id = #{aId}
+    </update>
+
+    <select id="findAll" resultType="Activity">
+        select * from t_activities
+    </select>
+
+    <select id="findByName" parameterType="String" resultType="Activity">
+        SELECT * FROM t_activities WHERE a_title LIKE #{str}
+    </select>
+    
+    <select id="findById" parameterType="Integer" resultType="Activity">
+        SELECT * FROM t_activities WHERE a_id = #{id}
+    </select>
+
+    <select id="clacCount" resultType="Integer">
+        SELECT COUNT(*) AS count FROM t_activities
+    </select>
+</mapper>
+

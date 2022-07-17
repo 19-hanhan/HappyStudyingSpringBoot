@@ -1,0 +1,23 @@
+server:
+  port: 3000 # Tomcat端口号
+
+spring: # springboot配置
+  datasource: # 定义数据源
+    name: hanhan
+    url: jdbc:mysql://localhost:3306/happystudying?characterEncoding=utf8
+    username: root
+    password: password
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml # 通配mapper文件
+  type-aliases-package: cn.edu.jxnu.Admin.entity # 给所有的对象类取别名，简化在xml中写全名如hanhan.demo.Entity.User=User
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰命名法与下划线的自动匹配机制
+    #该值默认就是false，所以可以不配，如果配置成了true，懒加载就会失效
+    aggressive-lazy-loading: false

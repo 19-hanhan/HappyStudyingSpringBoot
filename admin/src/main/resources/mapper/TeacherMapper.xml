@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxnu.admin.dao.TeacherMapper">
+    <insert id="add" parameterType="Teacher">
+        INSERT INTO t_teacher (t_id, t_name, t_sex, t_college, t_class) VALUES (#{tId}, #{tName}, #{tSex}, #{tCollege}, #{tClass})
+    </insert>
+
+    <delete id="del" parameterType="String">
+        DELETE FROM t_teacher WHERE t_id = #{id}
+    </delete>
+
+    <update id="update" parameterType="Teacher">
+        UPDATE t_teacher SET t_name = #{tName}, t_sex = #{tSex}, t_college = #{tCollege}, t_class = #{tClass} where t_id = #{tId}
+    </update>
+
+    <select id="findAll" resultType="Teacher">
+        SELECT * FROM t_teacher
+    </select>
+
+    <select id="findByName" parameterType="String" resultType="Teacher">
+        SELECT * FROM t_teacher WHERE a_name LIKE #{str}
+    </select>
+
+    <select id="findById" parameterType="String" resultType="Teacher">
+        SELECT * FROM t_teacher WHERE t_id = #{id}
+    </select>
+
+    <select id="clacCount" resultType="Integer">
+        SELECT COUNT(*) AS count FROM t_teacher
+    </select>
+</mapper>
+

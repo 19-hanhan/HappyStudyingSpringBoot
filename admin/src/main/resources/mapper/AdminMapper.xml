@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxnu.admin.dao.AdminMapper">
+    <insert id="add" parameterType="Admin">
+        INSERT INTO t_admin (a_password, a_name, a_email) VALUES (#{aPassword}, #{aName}, #{aEmail})
+    </insert>
+
+    <delete id="del" parameterType="Integer">
+        DELETE FROM t_admin WHERE a_id = #{id}
+    </delete>
+
+    <update id="update" parameterType="Admin">
+        UPDATE t_admin SET a_password = #{aPassword}, a_name = #{aName}, a_email = #{aEmail} where a_id = #{aId}
+    </update>
+
+    <select id="findAll" resultType="Admin">
+        SELECT * FROM t_admin
+    </select>
+
+    <select id="findById" parameterType="Integer" resultType="Admin">
+        SELECT * FROM t_admin WHERE a_id = #{id}
+    </select>
+    
+    <select id="findByCondition" resultType="Admin">
+        select * from t_admin
+        <where>
+            <if test="name != null">
+                a_name like #{name}
+            </if>
+            <if test="email != null">
+                and a_email = #{email}
+            </if>
+        </where>
+    </select>
+
+    <select id="clacCount" resultType="Integer">
+        SELECT COUNT(*) AS count FROM t_admin
+    </select>
+</mapper>

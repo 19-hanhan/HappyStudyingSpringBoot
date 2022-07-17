@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.jxnu.admin.dao.UserMapper">
+    <delete id="del" parameterType="Integer">
+        DELETE FROM t_user WHERE u_id = #{id}
+    </delete>
+
+    <update id="update" parameterType="User">
+        UPDATE t_admin SET u_name = #{uName}, u_email = #{uEmail}, u_password = #{uPassword}, is_post = #{isPost}, u_no = #{uNo}, u_sub_division = #{uSubDivsion}, u_diamond_number = #{uDiamondNumber} where u_id = #{uId}
+    </update>
+
+    <select id="findAll" resultType="User">
+        SELECT * FROM t_user
+    </select>
+
+    <select id="findByName" parameterType="String" resultType="User">
+        SELECT * FROM t_user WHERE u_name LIKE #{str}
+    </select>
+
+    <select id="findById" parameterType="Integer" resultType="User">
+        SELECT * FROM t_user WHERE u_id = #{id}
+    </select>
+
+    <select id="clacCount" resultType="Integer">
+        SELECT COUNT(*) AS count FROM t_user
+    </select>
+</mapper>
+
